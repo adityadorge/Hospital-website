@@ -1,0 +1,51 @@
+{% extends "Hospital_App/base.html"%}
+{% block header %}
+{% load static %}
+    <title>Hello, world!</title>
+{% endblock header%}
+{% block content %}
+<body>
+    {% if user.is_authenticated %}
+    <h2>Hello, {{ user.username }}. </h2>
+    <a href="{% url 'users:logout' %}">log out</a>
+    {% else %}
+    <a href="{% url 'users:login' %}">log in</a></li>
+    {% endif %}
+    <header class="header">
+        <input type="checkbox" name="" id="toggler">
+        <label for="toggler" class="fas fa-bars"></label>
+        <a href="#" class="logo">Hospital<span>.</span></a>
+            <nav class="navbar">
+                <a href="{% url 'Hospital_App:index' %}">Home</a>
+                <a href="#Doctor">Doctor</a>
+                <a href="{% url 'Hospital_App:stats' %}">Statistics</a>
+                <a href="{% url 'Hospital_App:tweets' %}" >Tweets</a>
+                <a href="#Appointment" >Book an appointment</a>
+                {% comment %} Below login is for testing purpose {% endcomment %}
+                {% if user.is_authenticated %}
+                {% comment %} <h6>Hello, {{ user.username }}. </h6> {% endcomment %}
+                <a href="{% url 'users:logout' %}">Logout</a>
+                {% else %}
+                <a href="{% url 'users:login' %}">Login</a></li>
+                {% endif %}
+           </nav>
+    </header>
+    <table class="table table-bordered border-primary">
+        <thead>
+          <tr>
+            <th scope="col">Tweets</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        {% for tweet in tweets_copy%}
+          <tr>    
+            <td>{{tweet}}<br><br></td>
+          </tr>
+           {%endfor%} 
+        </tbody>
+      </table>
+    <!-- Rest of your HTML code goes here -->
+</body>
+{% endblock content %}
+
