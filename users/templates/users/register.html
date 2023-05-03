@@ -1,0 +1,112 @@
+{% extends "Hospital_App/base.html" %}
+{% block header %}
+{% load static %}
+{%endblock header%}
+{% block content %}
+<body>
+  <div class="reg-body">  
+      <div class="reg-container">
+          <h1 class="header">Registration Form</h1>
+          <form method="post" action="{% url 'users:register' %}" class="form">
+              <div class="input-box">
+                  <label>Full Name</label>
+                  {% csrf_token %}
+                  {{form.full_name}}
+              </div>
+              <div class="input-box">
+                  <label>Email Address</label>
+                  {% csrf_token %}
+                  {{form.email}}
+                  {% if form.email.errors %}
+                      <div class="alert alert-danger" role="alert">
+                            please enter valid email address
+                      </div>
+                      {% comment %} <div class='error-message'>{{form.phone_number.errors}}</div> {% endcomment %}
+                  {% endif %}
+              </div>
+              <div class="column">
+                  <div class="input-box">
+                      <label>Phone Number</label>
+                      {% csrf_token %}
+                      {{form.phone_number}}
+                      {% if form.phone_number.errors %}
+                      <div class="alert alert-danger" role="alert">
+                        Phone number Invalid !
+                      </div>
+                      {% comment %} <div class='error-message'>{{form.phone_number.errors}}</div> {% endcomment %}
+                      {% endif %}
+                  </div>
+                  <div class="input-box">
+                      <label>Username</label>
+                      {% csrf_token %}
+                      {{form.username}}
+                  </div>
+              </div>
+              {% comment %} <div class="gender-container">
+                  <h3>Gender</h3>
+                  <div class="gender-option">
+                      <div class="gender">
+                          <input type="radio" id="check-male" name="gender" />
+                          <label for="check-male">Male</label>
+                      </div>
+                      <div class="gender">
+                          <input type="radio" id="check-female" name="gender" />
+                          <label for="check-female">female</label>
+                      </div>
+                      <div class="gender">
+                          <input type="radio" id="check-na" name="gender" checked/>
+                          <label for="check-na">Prefer not to say</label>
+                      </div>
+                  </div>
+              </div> {% endcomment %}
+              <div class="input-box address">
+                  <label>Address</label>
+                  {% csrf_token %}
+                  {{form.address_line}}
+                  <div class="column">
+                      {% comment %} <div class="select-container">
+                          <select name="" id="">
+                              <option value="" hidden>Country</option>
+                              <option value="">America</option>
+                              <option value="">Brazil</option>
+                              <option value="">Colombo</option>
+                              <option value="">India</option>
+                          </select>
+                      </div> {% endcomment %}
+                  </div>
+                  <div class="input-box">
+                    <label>Password</label>
+                    {% csrf_token %}
+                    {{form.password1}}
+                    <span></span>
+                </div>
+                <div class="input-box">
+                  <label>Password</label>
+                  {% csrf_token %}
+                  {{form.password2}}
+                  {% if form.password2.errors %}
+                      <div class="alert alert-danger" role="alert">
+                       Invalid password !
+                      </div>
+                      {% comment %} <div class='error-message'>{{form.phone_number.errors}}</div> {% endcomment %}
+                    {% endif %}
+                  <span></span>
+              </div>
+                  {% comment %} <div class="column">
+                      <input type="text" placeholder="Enter Region" required>
+                      <input type="number" placeholder="Enter postal code" required>
+                  </div> {% endcomment %}
+              </div>
+              <button class="submit-btn">Submit</button>
+          </form>
+      </div>
+  </div>
+  </div>
+</body>
+{% endblock content %}
+
+
+
+
+
+ 

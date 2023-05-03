@@ -1,0 +1,44 @@
+{% extends "Hospital_App/base.html"%}
+{% block header %}
+{% load static %}
+    <title>Hello, world!</title>
+    <h2>Log in to your account.</h2>
+{% endblock header%}
+{% if form.errors %}
+ <p>Your username and password didn't match. Please try again.</p>
+ <form method="post" action="{% url 'users:login' %}" class="form">
+ {% endif %}
+{% block content %}
+<body>
+        <div class="container">
+            <h1 class="header">Login</h1>
+            <form method="post" action="{% url 'users:login' %}" class="form">
+            <div class="text_field">
+                {% csrf_token %}
+                {{form.username}}
+                <span></span>
+                <label>Username/E-mail</label>
+            </div>
+            <div class="text_field">
+                {% csrf_token %}
+                {{form.password}}
+                <span></span>
+                <label>Password</label>
+            </div>
+            <div class="forgot_pass">
+                <a href="#">Forgot Password?</a>
+            </div>
+            <button class="submit-btn">Login</button>
+            <div class="signup_link">
+                Not a member? <a href="{% url 'users:register' %}">Register</a>
+            </div>
+            <div class="signup_link">
+                <span>Or</span>
+                <button class="btn_google_Login" type="button"><img class="btn-image" src="{% static 'Hospital_App/g-logo.png' %}" alt="G"> Login in with Google</button>
+            </div>
+        </form>
+    </div>
+</body>
+    
+{% endblock content %}
+ 
